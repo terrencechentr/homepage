@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- The tag on navigation bar -->
+<meta charset="UTF-8">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WCPDQJQ8YG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WCPDQJQ8YG');
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="Terrence Chen">
+
+
+  <meta name="subtitle" content="陈泰然">
+
+
+
+  <meta name="keywords" content="IT music movie life">
+
+
+<title>概率论重点总结 | Tairan Chen(陈泰然) | Home</title>
+
+
+
+<link rel="icon" href="/favicon.ico?v=4">
+
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+<script src="/lib/jquery.min.js"></script>
+
+
+<script src="/lib/iconify-icon.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/tailwind.css">
+
+<script>
+  (function () {
+    const prefersDark = false;  // 默认白色
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+    let isDark = document.documentElement.classList.contains("dark");
+  })();
+
+  $(document).ready(function () {
+    // init icon
+    const prefersDark = false;   // 默认白色
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = document.documentElement.classList.contains("dark");
+    $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+
+    function toggleGiscusTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const giscusFrame = document.querySelector("iframe.giscus-frame");
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: isDark ? "dark" : "light",
+              },
+            },
+          },
+          "https://giscus.app"
+        );
+      }
+    }
+
+
+    // toggle dark mode
+    function toggleDark() {
+      let isDark = document.documentElement.classList.contains("dark");
+      const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
+      document.documentElement.classList.toggle("dark", isDark);
+      $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+      if (prefersDark === isDark) {
+        localStorage.setItem("hexo-color-scheme", "auto");
+      } else {
+        localStorage.setItem("hexo-color-scheme", isDark ? "dark" : "light");
+      }
+      toggleGiscusTheme();
+    }
+    $("#toggle-dark").click(toggleDark);
+
+    // listen dark mode change
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+        if (setting === "auto") {
+          document.documentElement.classList.toggle("dark", e.matches);
+          $("#theme-icon").attr(
+            "icon",
+            e.matches ? "ic:round-dark-mode" : "ic:round-light-mode"
+          );
+          toggleGiscusTheme();
+        }
+      });
+  });
+</script>
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+<body 
+  class="
+    bg-[var(--c-0)]
+    text-[var(--c-80)]
+  ">
+  <!-- The navigation bar -->
+<header class="
+    top-0
+    bg-white
+    flex flex-row items-center
+    w-full
+    pr-4
+    z-10
+    border-b-[1px]
+    border-b-[var(--c-border)]
+    dark:bg-[var(--c-0)]
+    dark:border-b-[var(--c-0)]
+    gap-2
+    h-[var(--h-header)]
+    text-[var(--c-80)]
+">
+    <!-- Left part -->
+    <div class="overflow-hidden h-full flex flex-row items-center">
+        <!-- Site Title on the top left -->
+        <a href="/" class="
+            whitespace-nowrap
+            text-2xl
+            text-[var(--c-theme)]
+            hover:text-[var(--c-theme)]
+            pl-4
+            font-black
+            bg-gradient-to-r from-cyan-500
+            to-blue-500 bg-clip-text text-transparent
+          ">
+            Terrence
+        </a>
+    </div>
+    <!-- Div for pushing items to both sides -->
+    <div class="flex-1"></div>
+    <!-- Right part -->
+    <div class="flex flex-row items-center z-20 h-full">
+        <!-- Page links -->
+        <div class="hidden sm:flex flex-row h-full">
+            
+                
+                
+                    
+                    
+                
+                <a
+                    href="/"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:mortarboard-line" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>About Me</p>
+                    
+                </a>
+            
+                
+                
+                    
+                    
+                
+                <a
+                    href="/archives"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:pencil-fill" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>Posts</p>
+                    
+                </a>
+            
+                
+                
+                    
+                    
+                
+                <a
+                    href="/category"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:classify-3-fill" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>Categories</p>
+                    
+                </a>
+            
+        </div>
+        <!-- Icons on the right -->
+        <div class="flex flex-row items-center">
+
+            
+
+
+            <!-- Dark/light toggle icon -->
+            <a class="flex group p-1" title="toggle theme" id="toggle-dark">
+                <iconify-icon class="transition-transform
+                    group-hover:rotate-[45deg]
+                    group-hover:scale-125
+                    group-hover:text-[var(--c-theme)]
+                    " width="24" icon="" id="theme-icon">
+                </iconify-icon>
+            </a>
+            <!-- Icon for dropout menu on small screens -->
+            <div class="flex items-center justify-center gap-1 mx-1 sm:hidden">
+                <a class="w-5 h-5" aria-hidden="true" role="img" id="open-menu">
+                    <iconify-icon width="22" icon="mingcute:menu-fill"
+                        class="transition-transform hover:scale-125 hover:rotate-[5deg]">
+                    </iconify-icon>
+                </a>
+                <a class="w-5 h-5 hidden" aria-hidden="true" role="img" id="close-menu">
+                    <iconify-icon width="22" icon="mingcute:close-circle-fill"
+                        class="transition-transform hover:scale-125 hover:rotate-[80deg]">
+                    </iconify-icon>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Dropdown menu on small screens -->
+<div id="menu-panel"
+    class="
+        h-0
+        overflow-hidden
+        sm:hidden
+        w-full
+        z-10
+        rounded
+    ">
+  <div id="menu-content"
+        class="
+        font-bold
+        text-xl
+        border-b-[1px]
+        relative
+        z-20
+        border-[var(--c-sep)]
+        px-2
+        py-2
+        -translate-y-full
+        transition-transform
+        duration-200
+        ">
+      
+        
+        
+          <a
+            href="/"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:mortarboard-line" width="22">
+            </iconify-icon>
+            <p>
+              About Me
+            </p>
+          </a>
+        
+      
+        
+        
+          <a
+            href="/archives"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:pencil-fill" width="22">
+            </iconify-icon>
+            <p>
+              Posts
+            </p>
+          </a>
+        
+      
+        
+        
+          <a
+            href="/category"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:classify-3-fill" width="22">
+            </iconify-icon>
+            <p>
+              Categories
+            </p>
+          </a>
+        
+      
+  </div>
+</div>
+  <main>
+    <!-- css -->
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
+  
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+    <!-- toc -->
+    
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden xl:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-4xl mx-auto md:px-0">
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">概率论重点总结</p>
+      </div>
+      <!-- Meta data -->
+      <div>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              <time class="w-max">2023-07-06</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+
+            <!-- Word count -->
+            <span class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>852 words, 2 min</span>
+            </span>
+            <!-- Categories -->
+            
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/categories/Mathematics/">Mathematics</a>/<a class="article-category-link" href="/categories/Mathematics/Probability-Theory-and-Mathematical-Statistics/">Probability Theory and Mathematical Statistics</a>
+              </span>
+            
+          </div>
+        </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
+<div class="flex flex-wrap gap-1">
+  
+</div>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto dark:prose-invert">
+    <blockquote>
+<p>即使科学规律能指导我们预测大量”必然事件”，但这仍然是一个概率的世界。——Terrence</p>
+</blockquote>
+<p>本文用于介绍作者在学习概率论期间，总结的一些认为较为重要的概念。</p>
+<h2 id="事件与基本事件"><a href="#事件与基本事件" class="headerlink" title="事件与基本事件"></a>事件与基本事件</h2><p>概率，用来衡量即理想情况下一个<strong>事件</strong>生的可能性大小，而一个事件可能由多个<strong>样本点</strong>（不可再分的事件）组成，因此我们可以说：<strong>事件就是样本点的集合</strong>，而事件的运算本质上就是集合的运算。</p>
+<h2 id="全概率公式及贝叶斯公式"><a href="#全概率公式及贝叶斯公式" class="headerlink" title="全概率公式及贝叶斯公式"></a>全概率公式及贝叶斯公式</h2><p>如果一件事情的发生有种途径，那么可以使用<strong>全概率公式</strong>，分别计算再求和。</p>
+<p>如果一件事情发生了，要探究其发生的途径，那么可以使用<strong>贝叶斯公式</strong>，执果寻因。</p>
+<h2 id="随机变量"><a href="#随机变量" class="headerlink" title="随机变量"></a>随机变量</h2><p>将样本空间中的样本点映射到数轴上的<strong>函数</strong>，且函数所有取值和为1。</p>
+<h2 id="概率密度"><a href="#概率密度" class="headerlink" title="概率密度"></a>概率密度</h2><p>连续随机变量取得任意值的概率都为0，不过可以用<strong>概率密度函数</strong>体现取得其邻域值的可能性大小。</p>
+<h2 id="常见分布"><a href="#常见分布" class="headerlink" title="常见分布"></a>常见分布</h2><h3 id="0-1分布与二项分布-B-n-p"><a href="#0-1分布与二项分布-B-n-p" class="headerlink" title="0-1分布与二项分布  $B(n,p)$"></a>0-1分布与二项分布  $B(n,p)$</h3><p>将<strong>伯努利实验</strong>的结果成功计1，失败计0，化为随机变量；一次实验的结果与n次实验的结果即为0-1分布与二项分布。</p>
+<h3 id="泊松分布-P-lambda"><a href="#泊松分布-P-lambda" class="headerlink" title="泊松分布  $P(\lambda)$"></a>泊松分布  $P(\lambda)$</h3><p>用于描述单位内事件发生的次数的概率分布，且发生的时间间隔服从指数分布。</p>
+<p>（其表达式可用无穷次伯努利实验得到）</p>
+<h3 id="超几何分布-H-n-N-M"><a href="#超几何分布-H-n-N-M" class="headerlink" title="超几何分布  $H(n, N, M)$"></a>超几何分布  $H(n, N, M)$</h3><p>M件产品中有N件次品，抽取n件，抽取到次品数量的概率分布。</p>
+<h3 id="几何分布"><a href="#几何分布" class="headerlink" title="几何分布"></a>几何分布</h3><p>离散型等待分布。</p>
+<h3 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a>指数分布</h3><p>连续型等待分布。</p>
+<h3 id="均匀分布"><a href="#均匀分布" class="headerlink" title="均匀分布"></a>均匀分布</h3><p>几何上的均匀。</p>
+<h3 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h3><p>概率与统计的桥梁。</p>
+<h2 id="随机变量函数的分布"><a href="#随机变量函数的分布" class="headerlink" title="随机变量函数的分布"></a>随机变量函数的分布</h2><p>根据函数值由一个随机变量还是多个随机变量取值决定，可以分为一维和多维随机变量函数，但其基本思想是一致的，即将所有使得函数值相同的随机变量的函数值相加，<strong>本质上为全概率公式</strong>。</p>
+<h3 id="离散型随机变量"><a href="#离散型随机变量" class="headerlink" title="离散型随机变量"></a>离散型随机变量</h3><p>将结果函数的每个取值看作一个事件，分别计算事件发生的概率，最后整合为概率分布即可。</p>
+<h3 id="连续型随机变量"><a href="#连续型随机变量" class="headerlink" title="连续型随机变量"></a>连续型随机变量</h3><p>常用分布函数法累加后求导，以保证结果函数的<strong>归一性</strong>。</p>
+<h3 id="卷积公式"><a href="#卷积公式" class="headerlink" title="卷积公式"></a>卷积公式</h3><p>连续型随机变量的全概率公式。</p>
+<h2 id="期望与方差"><a href="#期望与方差" class="headerlink" title="期望与方差"></a>期望与方差</h2><ul>
+<li>期望即均值</li>
+<li>方差即<strong>二阶矩</strong>，描述的是随机变量分布的离散程度</li>
+</ul>
+<h3 id="平方的期望永远大于的期望的方差"><a href="#平方的期望永远大于的期望的方差" class="headerlink" title="平方的期望永远大于的期望的方差"></a>平方的期望永远大于的期望的方差</h3><p><img src="/images/概率论重点总结.jpg" alt="一点思考"></p>
+<h2 id="协方差与相关系数"><a href="#协方差与相关系数" class="headerlink" title="协方差与相关系数"></a>协方差与相关系数</h2><p><strong>协方差</strong>即<strong>“两个随机变量的方差”</strong>，<strong>相关系数</strong>则是协方差除以两个随机变量各自的标准差，其值介于$[0,1]$之间，说明了两个虽随机变量的<strong>线性相关程度</strong>。当其等于0时，只能说明两个随机变量没有线性相关性质，并不能说明两个随机变量独立。不过当两个随机变量都服从正态分布时，二者等价。</p>
+
+  </article>
+
+  <!-- prev and next -->
+  <!-- <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
+    <div>
+      
+        <a href="/2023/07/06/11_mathematical_statistics_summary/"
+          class="
+            transition-all
+            flex justify-center
+            hover:-translate-x-1
+            hover:text-[var(--c-80)]
+          ">
+          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
+          </iconify-icon>
+          数理统计重点总结
+        </a>
+      
+    </div>
+    <div>
+      
+        <a href="/2023/06/11/9_matrix_eigenvalues/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
+          矩阵的特征
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div> -->
+
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+<script
+  src="https://giscus.app/client.js"
+  data-repo=""
+  data-repo-id=""
+  data-category=""
+  data-category-id=""
+  data-mapping=""
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  crossorigin="anonymous"
+  async
+></script>
+<script>
+  window.onload = function () {
+    console.log("giscus loaded");
+    const isDark = document.documentElement.classList.contains("dark");
+    const giscusFrame = document.querySelector("iframe.giscus-frame");
+    giscusFrame.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: isDark ? "dark" : "light",
+          },
+        },
+      },
+      "https://giscus.app"
+    );
+  };
+</script>
+
+
+  </div>
+</section>
+<!-- js inspect -->
+
+<script src="/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        var title = this.title;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        if (title) $(this).after('<span class="fancybox-title">' + title + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
+
+  </main>
+  <footer class="flex flex-col mt-12 mb-12 items-center
+  text-[var(--c-50)] text-sm">
+  Copyright © 2021-2026 Tairan Chen
+
+</footer>
+
+  <div class="
+    back-to-top
+    fixed right-6
+    z-[1024]
+    -bottom-20
+    rounded-lg
+    font-bold
+    py-1 px-2
+    text-[var(--c-80)]
+    bg-[var(--c-20)]
+    cursor-pointer
+    text-center
+    drop-shadow-md
+  ">
+    <span class="flex justify-center items-center text-sm">
+      <span id="scrollpercent"><span>0</span> %</span>
+      <iconify-icon width="18" icon="mingcute:arrow-to-up-fill" id="go-top"></iconify-icon>
+    </span>
+  </div>
+  
+<script src="/js/main.js"></script>
+
+
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
+</body>
+
+</html>

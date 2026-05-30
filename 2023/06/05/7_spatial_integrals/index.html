@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- The tag on navigation bar -->
+<meta charset="UTF-8">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WCPDQJQ8YG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WCPDQJQ8YG');
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="Terrence Chen">
+
+
+  <meta name="subtitle" content="陈泰然">
+
+
+
+  <meta name="keywords" content="IT music movie life">
+
+
+<title>空间积分 | Tairan Chen(陈泰然) | Home</title>
+
+
+
+<link rel="icon" href="/favicon.ico?v=4">
+
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+<script src="/lib/jquery.min.js"></script>
+
+
+<script src="/lib/iconify-icon.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/tailwind.css">
+
+<script>
+  (function () {
+    const prefersDark = false;  // 默认白色
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+    let isDark = document.documentElement.classList.contains("dark");
+  })();
+
+  $(document).ready(function () {
+    // init icon
+    const prefersDark = false;   // 默认白色
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = document.documentElement.classList.contains("dark");
+    $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+
+    function toggleGiscusTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const giscusFrame = document.querySelector("iframe.giscus-frame");
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: isDark ? "dark" : "light",
+              },
+            },
+          },
+          "https://giscus.app"
+        );
+      }
+    }
+
+
+    // toggle dark mode
+    function toggleDark() {
+      let isDark = document.documentElement.classList.contains("dark");
+      const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
+      document.documentElement.classList.toggle("dark", isDark);
+      $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+      if (prefersDark === isDark) {
+        localStorage.setItem("hexo-color-scheme", "auto");
+      } else {
+        localStorage.setItem("hexo-color-scheme", isDark ? "dark" : "light");
+      }
+      toggleGiscusTheme();
+    }
+    $("#toggle-dark").click(toggleDark);
+
+    // listen dark mode change
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+        if (setting === "auto") {
+          document.documentElement.classList.toggle("dark", e.matches);
+          $("#theme-icon").attr(
+            "icon",
+            e.matches ? "ic:round-dark-mode" : "ic:round-light-mode"
+          );
+          toggleGiscusTheme();
+        }
+      });
+  });
+</script>
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+<body 
+  class="
+    bg-[var(--c-0)]
+    text-[var(--c-80)]
+  ">
+  <!-- The navigation bar -->
+<header class="
+    top-0
+    bg-white
+    flex flex-row items-center
+    w-full
+    pr-4
+    z-10
+    border-b-[1px]
+    border-b-[var(--c-border)]
+    dark:bg-[var(--c-0)]
+    dark:border-b-[var(--c-0)]
+    gap-2
+    h-[var(--h-header)]
+    text-[var(--c-80)]
+">
+    <!-- Left part -->
+    <div class="overflow-hidden h-full flex flex-row items-center">
+        <!-- Site Title on the top left -->
+        <a href="/" class="
+            whitespace-nowrap
+            text-2xl
+            text-[var(--c-theme)]
+            hover:text-[var(--c-theme)]
+            pl-4
+            font-black
+            bg-gradient-to-r from-cyan-500
+            to-blue-500 bg-clip-text text-transparent
+          ">
+            Terrence
+        </a>
+    </div>
+    <!-- Div for pushing items to both sides -->
+    <div class="flex-1"></div>
+    <!-- Right part -->
+    <div class="flex flex-row items-center z-20 h-full">
+        <!-- Page links -->
+        <div class="hidden sm:flex flex-row h-full">
+            
+                
+                
+                    
+                    
+                
+                <a
+                    href="/"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:mortarboard-line" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>About Me</p>
+                    
+                </a>
+            
+                
+                
+                    
+                    
+                
+                <a
+                    href="/archives"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:pencil-fill" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>Posts</p>
+                    
+                </a>
+            
+                
+                
+                    
+                    
+                
+                <a
+                    href="/category"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:classify-3-fill" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>Categories</p>
+                    
+                </a>
+            
+        </div>
+        <!-- Icons on the right -->
+        <div class="flex flex-row items-center">
+
+            
+
+
+            <!-- Dark/light toggle icon -->
+            <a class="flex group p-1" title="toggle theme" id="toggle-dark">
+                <iconify-icon class="transition-transform
+                    group-hover:rotate-[45deg]
+                    group-hover:scale-125
+                    group-hover:text-[var(--c-theme)]
+                    " width="24" icon="" id="theme-icon">
+                </iconify-icon>
+            </a>
+            <!-- Icon for dropout menu on small screens -->
+            <div class="flex items-center justify-center gap-1 mx-1 sm:hidden">
+                <a class="w-5 h-5" aria-hidden="true" role="img" id="open-menu">
+                    <iconify-icon width="22" icon="mingcute:menu-fill"
+                        class="transition-transform hover:scale-125 hover:rotate-[5deg]">
+                    </iconify-icon>
+                </a>
+                <a class="w-5 h-5 hidden" aria-hidden="true" role="img" id="close-menu">
+                    <iconify-icon width="22" icon="mingcute:close-circle-fill"
+                        class="transition-transform hover:scale-125 hover:rotate-[80deg]">
+                    </iconify-icon>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Dropdown menu on small screens -->
+<div id="menu-panel"
+    class="
+        h-0
+        overflow-hidden
+        sm:hidden
+        w-full
+        z-10
+        rounded
+    ">
+  <div id="menu-content"
+        class="
+        font-bold
+        text-xl
+        border-b-[1px]
+        relative
+        z-20
+        border-[var(--c-sep)]
+        px-2
+        py-2
+        -translate-y-full
+        transition-transform
+        duration-200
+        ">
+      
+        
+        
+          <a
+            href="/"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:mortarboard-line" width="22">
+            </iconify-icon>
+            <p>
+              About Me
+            </p>
+          </a>
+        
+      
+        
+        
+          <a
+            href="/archives"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:pencil-fill" width="22">
+            </iconify-icon>
+            <p>
+              Posts
+            </p>
+          </a>
+        
+      
+        
+        
+          <a
+            href="/category"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:classify-3-fill" width="22">
+            </iconify-icon>
+            <p>
+              Categories
+            </p>
+          </a>
+        
+      
+  </div>
+</div>
+  <main>
+    <!-- css -->
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
+  
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+    <!-- toc -->
+    
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden xl:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-4xl mx-auto md:px-0">
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">空间积分</p>
+      </div>
+      <!-- Meta data -->
+      <div>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              <time class="w-max">2023-06-06</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+
+            <!-- Word count -->
+            <span class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>1.7k words, 7 min</span>
+            </span>
+            <!-- Categories -->
+            
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/categories/Mathematics/">Mathematics</a>/<a class="article-category-link" href="/categories/Mathematics/Further-Mathematics/">Further Mathematics</a>
+              </span>
+            
+          </div>
+        </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
+<div class="flex flex-wrap gap-1">
+  
+</div>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto dark:prose-invert">
+    <p>首先，热烈庆祝高数部分的基础阶段复习完成，完结撒花🎉！</p>
+<p>本篇主要内容为三重积分和第一、第二型曲线曲面积分。</p>
+<p><img src="/images/e41aff7ab71d138ad906929a5ea37ed.jpg" alt="各种积分之间的内在联系"></p>
+<hr>
+<h2 id="三重积分"><a href="#三重积分" class="headerlink" title="三重积分"></a>三重积分</h2><p><em>三重积分</em>的本质即通过<em>密度函数</em>求解空间物体的质量，基本形式即：</p>
+<script type="math/tex; mode=display">
+\iiint \limits_{\Omega} \rho(x,y,z) \mathrm{d}v</script><p>求解该种积分有三种基本方法（按考虑优先级）：</p>
+<ul>
+<li><p>球面坐标系：适用于积分区域是球的一部分</p>
+<script type="math/tex; mode=display">
+  \iiint \limits_{\Omega} \rho(x,y,z) \mathrm{d}v= \int\mathrm{d}\theta \int\mathrm{d}\varphi\int \rho(x,y,z) r^2 \sin{\varphi} \mathrm{d}r</script></li>
+<li><p>先二后一（先积面后积线）：适用与以某一坐标轴为中心的柱体</p>
+</li>
+<li><p>先一后二（先积线后积面）：适用于由两个曲面围成的曲顶柱体</p>
+</li>
+</ul>
+<p>注⚠：</p>
+<p>在进行三重积分计算时是不能脱离其几何意义，如对某个变量积分时，其余某个变量是否能够看作为常数应考虑在进行该重积分时，这个变量的值是否发生变化，脱离图形而盲目积分就漾银笑话了🤭。</p>
+<h2 id="第一型积分"><a href="#第一型积分" class="headerlink" title="第一型积分"></a>第一型积分</h2><p>与<em>三重积分</em>类似，<em>一型积分</em>的本质为已知<em>密度函数</em>  <script type="math/tex">\rho(x, y, z)</script>，求解空间曲线/曲面的质量（此处使用“质量”并不恰当，因为线和面是没有质量的），该型积分的基本思想即：</p>
+<ol>
+<li>使用图形的<strong>限定方程</strong>对被积函数降维（也就是我们常说的投影），并确定积分范围</li>
+<li><strong>使用<em>弧长公式转化为定积分</em></strong>  或  <strong>使用<em>曲面面积公式</em>转化二重积分</strong></li>
+<li>计算积分</li>
+</ol>
+<p>下面就分别来看看这三步在两种积分中如何应用。</p>
+<h3 id="第一型曲线积分"><a href="#第一型曲线积分" class="headerlink" title="第一型曲线积分"></a>第一型曲线积分</h3><ol>
+<li><p>一型曲线积分分为两种，降维方法稍有不同，但最后都将化为定积分：</p>
+<ul>
+<li><p>一型平面曲线积分：降维为关于x或关于y的函数(一般为x)</p>
+</li>
+<li><p>一型空间曲线积分：降维为关于t的函数（选取便于计算的t）</p>
+</li>
+</ul>
+</li>
+<li><p>弧长公式：</p>
+</li>
+</ol>
+<script type="math/tex; mode=display">
+\mathrm{d}s = \sqrt{(x_t')^2+(y_t')^2+(z_t')^2}\mathrm{dt}</script><p>  特殊的，当一型平面曲线积分降维为关于x的函数时有</p>
+<script type="math/tex; mode=display">
+\mathrm{d}s = \sqrt{1+(y_x')^2}\mathrm{d}x</script><ol>
+<li>计算定积分</li>
+</ol>
+<h3 id="第一型曲面积分"><a href="#第一型曲面积分" class="headerlink" title="第一型曲面积分"></a>第一型曲面积分</h3><ol>
+<li><p>曲面降维即投影到坐标轴平面上，但在选择平面时要选择投影后<strong>没有重合点</strong>的平面</p>
+</li>
+<li><p>曲面面积公式：（以投影到$xOy$平面上为例）</p>
+<script type="math/tex; mode=display">
+ \mathrm{d}\sigma = \sqrt{1+(z_x')^2+(z_y')^2}\mathrm{d}x\mathrm{d}y</script></li>
+<li><p>计算二重积分</p>
+</li>
+</ol>
+<h2 id="第二型积分"><a href="#第二型积分" class="headerlink" title="第二型积分"></a>第二型积分</h2><p><em>二型积分</em>的本质为：已知<em>向量场</em>：</p>
+<script type="math/tex; mode=display">
+F(x, y, z) = P(x, y, z) \overrightarrow{i} + Q(x, y, z) \overrightarrow{j} + R(x, y, z) \overrightarrow{k}</script><p> 求解该场中某一曲线的做功或某一曲面的通量问题，观察等式右边，该向量场亦可以看作三个沿坐标轴正方向的<strong>分向量场的叠加</strong>。</p>
+<p>下面分别来看：</p>
+<h3 id="第二次曲线积分"><a href="#第二次曲线积分" class="headerlink" title="第二次曲线积分"></a>第二次曲线积分</h3><p>若一个向量场为力场，则每一点$(x_0, y_0, z_0)$都能确定一个力$P(x_0, y_0, z_0) \overrightarrow{i} + Q(x_0, y_0, z_0) \overrightarrow{j} + R(x_0, y_0, z_0) \overrightarrow{k} $, 若要确定一个单位质量的物体沿该力场中某一特定<strong>有向路径</strong>移动，该力场所做的功，则引出了第二型曲线积分：</p>
+<script type="math/tex; mode=display">
+\int \limits_{\Gamma} F(x, y, z) \mathrm{d}s = \int \limits_{\Gamma} P(x_0, y_0, z_0) \mathrm{d}x + Q(x_0, y_0, z_0) \mathrm{d}y + R(x_0, y_0, z_0) \mathrm{d}z</script><p>结合其物理意义，不难理解，等式右边即三个<strong>分向量场做功的和</strong>，因此完全可以分三个定积分来计算：</p>
+<script type="math/tex; mode=display">
+\int \limits_{\Gamma} F(x, y, z) \mathrm{d}s = \int \limits_{\Gamma} P(x, y, z) x_t' \mathrm{d}t + \int \limits_{\Gamma} Q(x, y, z) y_t' \mathrm{d}t + \int \limits_{\Gamma} R(x, y, z) z_t' \mathrm{d}t</script><p>不过这种方法，需要求出有向路径的<strong>参数方程</strong>，且计算量较大。当满足：</p>
+<ul>
+<li>有向路径是<strong>封闭曲线</strong></li>
+<li>被积函数在封闭区域内<strong>连续</strong></li>
+</ul>
+<p>就可以应用公式，将其转化为关于封闭区域的面积分：</p>
+<ul>
+<li><p><strong>格林公式</strong></p>
+<p>  当积分曲线$\Gamma$是$xOy$上的<strong>平面曲线</strong>，则封闭区域$\Sigma$则为$xOy$上的平面，此时应用格林公式：</p>
+<script type="math/tex; mode=display">
+  \oint \limits_{\Gamma} P(x_0, y_0, z_0) \mathrm{d}x + Q(x_0, y_0, z_0) \mathrm{d}y = \pm \iint \limits_{\Sigma}
+  \left|\begin{matrix}
+     \frac{\partial}{\partial x} & \frac{\partial}{\partial y} \\
+     P & Q \\
+    \end{matrix}\right|\mathrm{d}x\mathrm{d}y</script><p>  其中的$\pm$取值为该曲线“法向量”（右手向量）的正负</p>
+</li>
+<li><p><strong>斯托克斯公式</strong></p>
+<p>  当积分曲线$\Gamma$是<strong>空间曲线</strong>，则封闭区域$\Sigma$则为空间平面，此时应用斯托克斯公式：</p>
+<script type="math/tex; mode=display">
+  \oint \limits_{\Gamma} P(x_0, y_0, z_0) \mathrm{d}x + Q(x_0, y_0, z_0) \mathrm{d}y + R(x_0, y_0, z_0) \mathrm{d}z = \iint \limits_{\Sigma}
+  \left|\begin{matrix}
+     cos{\alpha} & cos{\beta} & cos{\gamma}\\
+     \frac{\partial}{\partial x} & \frac{\partial}{\partial y} &  \frac{\partial}{\partial z}\\
+     P & Q & R\\
+    \end{matrix}\right|\mathrm{d}\sigma</script></li>
+</ul>
+<p>​其中第一行为该曲线“法向量”的三个方向角</p>
+<h3 id="第二型曲面积分"><a href="#第二型曲面积分" class="headerlink" title="第二型曲面积分"></a>第二型曲面积分</h3><p>若一个向量场为电/磁场，或某一流体的速度场，若要确定该场通过某一曲面的流量，则引出了第二型曲面积分：</p>
+<script type="math/tex; mode=display">
+\iint \limits_{\Sigma} F(x, y, z) \mathrm{d}\sigma = \iint \limits_{\Sigma} P(x_0, y_0, z_0) \mathrm{d}y\mathrm{d}z + Q(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}z + R(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}y</script><p>和曲线积分一样，该积分同样等于三个<strong>分向量场通量的和</strong>，即：</p>
+<script type="math/tex; mode=display">
+\iint \limits_{\Sigma} F(x, y, z) \mathrm{d}\sigma = \iint \limits_{\Sigma} P(x_0, y_0, z_0) \mathrm{d}y\mathrm{d}z +  \iint \limits_{\Sigma} Q(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}z +   \iint \limits_{\Sigma}R(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}y</script><p>和第一型曲面积分一样，使用该方法要求该曲面在坐标轴上的投影不能有重合点！不过，若该曲面满足：</p>
+<ul>
+<li><strong>曲面封闭</strong></li>
+<li>被积函数在封闭空间内<strong>连续</strong></li>
+</ul>
+<p>就可以应用公式，将其转化为关于封闭空间的三重积分，即<strong>高斯公式</strong>：</p>
+<script type="math/tex; mode=display">
+\iint \limits_{\Sigma} F(x, y, z) \mathrm{d}\sigma = \pm\iiint \limits_{\Omega}(\frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z})\mathrm{d}v</script><p>其中的当曲面为外侧时取$+$，内侧取$-$</p>
+<hr>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>以上所述皆为基本方法，尤其是实际题目，想要使用</p>
+<ul>
+<li><strong>格林公式</strong></li>
+<li><strong>斯托克斯公式</strong></li>
+<li><strong>高斯公式</strong></li>
+</ul>
+<p>往往需要<strong>补充线/面</strong>使之封闭或挖去其中<strong>奇点</strong>才可</p>
+<p>此外,第一型积分的应用有时需要读者熟知以下公式:</p>
+<h3 id="计算重心-以平面薄片为例"><a href="#计算重心-以平面薄片为例" class="headerlink" title="计算重心 (以平面薄片为例)"></a>计算重心 (以平面薄片为例)</h3><script type="math/tex; mode=display">
+\overline{x} = \frac{\iint x \rho(x, y) \mathrm{d} \sigma}{\iint \rho(x, y) \mathrm{d} \sigma}</script><h3 id="转动惯量"><a href="#转动惯量" class="headerlink" title="转动惯量"></a>转动惯量</h3><script type="math/tex; mode=display">
+I = m r^2</script><h3 id="xOy-平面上某一薄片对于某点-x-0-y-0-z-0-沿某一轴方向的引力-以-x-轴为例"><a href="#xOy-平面上某一薄片对于某点-x-0-y-0-z-0-沿某一轴方向的引力-以-x-轴为例" class="headerlink" title="$xOy$平面上某一薄片对于某点$(x_0,y_0,z_0)$沿某一轴方向的引力 (以$x$轴为例)"></a>$xOy$平面上某一薄片对于某点$(x_0,y_0,z_0)$沿某一轴方向的引力 (以$x$轴为例)</h3><script type="math/tex; mode=display">
+F_x = \frac{GMm}{R^2}. \frac{R_x}{R} = \iint \limits_{D} \frac{\rho(x, y)}{[(x-x_0)^2 + (y-y_0)^2 + z_0^2]}. \frac{(x - x_0)}{\sqrt{(x-x_0)^2 + (y-y_0)^2 + z_0^2}}\mathrm{d}\sigma</script>
+  </article>
+
+  <!-- prev and next -->
+  <!-- <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
+    <div>
+      
+        <a href="/2023/06/11/8_linear_algebra_basics/"
+          class="
+            transition-all
+            flex justify-center
+            hover:-translate-x-1
+            hover:text-[var(--c-80)]
+          ">
+          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
+          </iconify-icon>
+          线性代数基础
+        </a>
+      
+    </div>
+    <div>
+      
+        <a href="/2023/05/23/6_hexo_guide/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
+          Hexo博客使用说明
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div> -->
+
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+<script
+  src="https://giscus.app/client.js"
+  data-repo=""
+  data-repo-id=""
+  data-category=""
+  data-category-id=""
+  data-mapping=""
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  crossorigin="anonymous"
+  async
+></script>
+<script>
+  window.onload = function () {
+    console.log("giscus loaded");
+    const isDark = document.documentElement.classList.contains("dark");
+    const giscusFrame = document.querySelector("iframe.giscus-frame");
+    giscusFrame.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: isDark ? "dark" : "light",
+          },
+        },
+      },
+      "https://giscus.app"
+    );
+  };
+</script>
+
+
+  </div>
+</section>
+<!-- js inspect -->
+
+<script src="/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        var title = this.title;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        if (title) $(this).after('<span class="fancybox-title">' + title + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
+
+  </main>
+  <footer class="flex flex-col mt-12 mb-12 items-center
+  text-[var(--c-50)] text-sm">
+  Copyright © 2021-2026 Tairan Chen
+
+</footer>
+
+  <div class="
+    back-to-top
+    fixed right-6
+    z-[1024]
+    -bottom-20
+    rounded-lg
+    font-bold
+    py-1 px-2
+    text-[var(--c-80)]
+    bg-[var(--c-20)]
+    cursor-pointer
+    text-center
+    drop-shadow-md
+  ">
+    <span class="flex justify-center items-center text-sm">
+      <span id="scrollpercent"><span>0</span> %</span>
+      <iconify-icon width="18" icon="mingcute:arrow-to-up-fill" id="go-top"></iconify-icon>
+    </span>
+  </div>
+  
+<script src="/js/main.js"></script>
+
+
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
+</body>
+
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- The tag on navigation bar -->
+<meta charset="UTF-8">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WCPDQJQ8YG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WCPDQJQ8YG');
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="Terrence Chen">
+
+
+  <meta name="subtitle" content="陈泰然">
+
+
+
+  <meta name="keywords" content="IT music movie life">
+
+
+<title>Tairan Chen(陈泰然) | Home</title>
+
+
+
+<link rel="icon" href="/favicon.ico?v=4">
+
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+<script src="/lib/jquery.min.js"></script>
+
+
+<script src="/lib/iconify-icon.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/tailwind.css">
+
+<script>
+  (function () {
+    const prefersDark = false;  // 默认白色
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+    let isDark = document.documentElement.classList.contains("dark");
+  })();
+
+  $(document).ready(function () {
+    // init icon
+    const prefersDark = false;   // 默认白色
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = document.documentElement.classList.contains("dark");
+    $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+
+    function toggleGiscusTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const giscusFrame = document.querySelector("iframe.giscus-frame");
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: isDark ? "dark" : "light",
+              },
+            },
+          },
+          "https://giscus.app"
+        );
+      }
+    }
+
+
+    // toggle dark mode
+    function toggleDark() {
+      let isDark = document.documentElement.classList.contains("dark");
+      const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
+      document.documentElement.classList.toggle("dark", isDark);
+      $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+      if (prefersDark === isDark) {
+        localStorage.setItem("hexo-color-scheme", "auto");
+      } else {
+        localStorage.setItem("hexo-color-scheme", isDark ? "dark" : "light");
+      }
+      toggleGiscusTheme();
+    }
+    $("#toggle-dark").click(toggleDark);
+
+    // listen dark mode change
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+        if (setting === "auto") {
+          document.documentElement.classList.toggle("dark", e.matches);
+          $("#theme-icon").attr(
+            "icon",
+            e.matches ? "ic:round-dark-mode" : "ic:round-light-mode"
+          );
+          toggleGiscusTheme();
+        }
+      });
+  });
+</script>
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+<body 
+  class="
+    bg-[var(--c-0)]
+    text-[var(--c-80)]
+  ">
+  <!-- The navigation bar -->
+<header class="
+    top-0
+    bg-white
+    flex flex-row items-center
+    w-full
+    pr-4
+    z-10
+    border-b-[1px]
+    border-b-[var(--c-border)]
+    dark:bg-[var(--c-0)]
+    dark:border-b-[var(--c-0)]
+    gap-2
+    h-[var(--h-header)]
+    text-[var(--c-80)]
+">
+    <!-- Left part -->
+    <div class="overflow-hidden h-full flex flex-row items-center">
+        <!-- Site Title on the top left -->
+        <a href="/" class="
+            whitespace-nowrap
+            text-2xl
+            text-[var(--c-theme)]
+            hover:text-[var(--c-theme)]
+            pl-4
+            font-black
+            bg-gradient-to-r from-cyan-500
+            to-blue-500 bg-clip-text text-transparent
+          ">
+            Terrence
+        </a>
+    </div>
+    <!-- Div for pushing items to both sides -->
+    <div class="flex-1"></div>
+    <!-- Right part -->
+    <div class="flex flex-row items-center z-20 h-full">
+        <!-- Page links -->
+        <div class="hidden sm:flex flex-row h-full">
+            
+                
+                
+                    
+                    
+                
+                <a
+                    href="/"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:mortarboard-line" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>About Me</p>
+                    
+                </a>
+            
+                
+                
+                    
+                    
+                
+                <a
+                    href="/archives"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:pencil-fill" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>Posts</p>
+                    
+                </a>
+            
+                
+                
+                    
+                    
+                
+                <a
+                    href="/category"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:classify-3-fill" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>Categories</p>
+                    
+                </a>
+            
+        </div>
+        <!-- Icons on the right -->
+        <div class="flex flex-row items-center">
+
+            
+
+
+            <!-- Dark/light toggle icon -->
+            <a class="flex group p-1" title="toggle theme" id="toggle-dark">
+                <iconify-icon class="transition-transform
+                    group-hover:rotate-[45deg]
+                    group-hover:scale-125
+                    group-hover:text-[var(--c-theme)]
+                    " width="24" icon="" id="theme-icon">
+                </iconify-icon>
+            </a>
+            <!-- Icon for dropout menu on small screens -->
+            <div class="flex items-center justify-center gap-1 mx-1 sm:hidden">
+                <a class="w-5 h-5" aria-hidden="true" role="img" id="open-menu">
+                    <iconify-icon width="22" icon="mingcute:menu-fill"
+                        class="transition-transform hover:scale-125 hover:rotate-[5deg]">
+                    </iconify-icon>
+                </a>
+                <a class="w-5 h-5 hidden" aria-hidden="true" role="img" id="close-menu">
+                    <iconify-icon width="22" icon="mingcute:close-circle-fill"
+                        class="transition-transform hover:scale-125 hover:rotate-[80deg]">
+                    </iconify-icon>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Dropdown menu on small screens -->
+<div id="menu-panel"
+    class="
+        h-0
+        overflow-hidden
+        sm:hidden
+        w-full
+        z-10
+        rounded
+    ">
+  <div id="menu-content"
+        class="
+        font-bold
+        text-xl
+        border-b-[1px]
+        relative
+        z-20
+        border-[var(--c-sep)]
+        px-2
+        py-2
+        -translate-y-full
+        transition-transform
+        duration-200
+        ">
+      
+        
+        
+          <a
+            href="/"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:mortarboard-line" width="22">
+            </iconify-icon>
+            <p>
+              About Me
+            </p>
+          </a>
+        
+      
+        
+        
+          <a
+            href="/archives"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:pencil-fill" width="22">
+            </iconify-icon>
+            <p>
+              Posts
+            </p>
+          </a>
+        
+      
+        
+        
+          <a
+            href="/category"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:classify-3-fill" width="22">
+            </iconify-icon>
+            <p>
+              Categories
+            </p>
+          </a>
+        
+      
+  </div>
+</div>
+  <main>
+    <div class="flex flex-col gap-0">
+  <!-- Home page -->
+  <div class="homepage-container">
+
+    <!-- info bar -->
+    <div class="info-bar">
+        <div class="container flex justify-center items-center">
+          <img class="rounded-3xl w-40 hover:scale-[1.04] transition-transform" src="/images/protrait.png"
+            alt="Tairan Chen(陈泰然) | Home" />
+        </div>
+        <!-- Sub-title -->
+        <p class="text-2xl font-semibold text-center text-gray-600 pt-2">
+          Tairan Chen
+        </p>
+        <p class="text-2xl font-semibold text-center text-gray-600 pt-2">
+          (陈泰然)
+        </p>
+      
+
+        <div class="link-container my-4 text-base">
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Hoboken,+NJ,+USA" class="hover:underline link-item">
+            <iconify-icon width="20" icon="mdi:map-marker"></iconify-icon>
+            <span>Hoboken, NJ, USA</span>
+          </a>
+          <a href="/pdf/CV.pdf" class="hover:underline link-item">
+            <iconify-icon width="20" icon="mingcute:idcard-fill"></iconify-icon>
+            <span>CV (2026)</span>
+          </a>
+          <a href="mailto:terrencechentr@gmail.com" class="hover:underline link-item">
+            <iconify-icon width="20" icon="ic:baseline-email"></iconify-icon>
+            <span>Email</span>
+          </a>
+          <a target="_blank" rel="noopener" href="https://github.com/terrencechentr" class="hover:underline link-item">
+            <iconify-icon width="20" icon="mdi:github"></iconify-icon>
+            <span>GitHub</span>
+          </a>
+          <a target="_blank" rel="noopener" href="https://scholar.google.com/citations?hl=en&user=jezEWmsAAAAJ" class="hover:underline link-item">
+            <iconify-icon width="20" icon="academicons:google-scholar"></iconify-icon>
+            <span>Google Scholar</span>
+          </a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/tairan-chen-182322338/" class="hover:underline link-item">
+            <iconify-icon width="20" icon="mdi:linkedin"></iconify-icon>
+            <span>LinkedIn</span>
+          </a>
+          <a target="_blank" rel="noopener" href="https://space.bilibili.com/406699415" class="hover:underline link-item">
+            <iconify-icon width="20" icon="fa6-brands:bilibili"></iconify-icon>
+            <span>Bilibili</span>
+          </a>
+        </div>
+
+        <!-- 访客分布地图（MapMyVisitors，原 ClustrMaps 迁移后的新域名；沿用原地图 ID）-->
+        <div id="mapmyvisitors-container" class="my-4" style="width: 100%; height: auto;">
+          <script type="text/javascript" id="mapmyvisitors" async src="//mapmyvisitors.com/map.js?d=p7MS1qEHlPCH8lFbklWmm5AuIGM9V5EYku3Sfsfx3og&cl=ffffff&w=a"></script>
+        </div>
+
+    </div>
+
+    
+    <!-- content -->
+    <div class="bio-container">
+      
+      <article class="prose dark:prose-invert max-w-3xl text-left justify-star">
+        
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+            <br>
+            <div><h2 id="Biography"><a href="#Biography" class="headerlink" title="Biography"></a>Biography</h2><p>🌻 I’m a Ph.D. student in Computer Science at <strong>Stevens Institute of Technology</strong>, advised by <a target="_blank" rel="noopener" href="https://www.stevens.edu/profile/hwang4">Prof. Hui Wang</a>. My research focuses on Deep Learning, Large Language Models, and Trustworthy Machine Learning.</p>
+<p>Previously, I was a Research Engineer at <a target="_blank" rel="noopener" href="https://www.flashlabs.ai/">FlashLabs</a> (FlashIntel), working on large language models, text-to-speech, and end-to-end spoken dialogue systems, and a Research Assistant in the <a target="_blank" rel="noopener" href="https://ml.cs.tsinghua.edu.cn/">SAIL Group</a> at <strong>Tsinghua University</strong>, advised by <a target="_blank" rel="noopener" href="https://scholar.google.com/citations?user=dxN1_X0AAAAJ&amp;hl=en">Prof. Hang Su</a>. I received my Bachelor’s degree from <strong>Jilin University</strong> in 2024.</p>
+<h2 id="News"><a href="#News" class="headerlink" title="News"></a>News</h2><p><strong>[Jan, 2026]</strong> 🎉 We released <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.11141"><strong>Chroma 1.0</strong></a>, the first open-source real-time end-to-end spoken dialogue model with voice cloning!</p>
+<p><strong>[Sep, 2025]</strong> 🎓 I started my Ph.D. in Computer Science at <a target="_blank" rel="noopener" href="https://www.stevens.edu/">Stevens Institute of Technology</a>!</p>
+<p><strong>[Aug, 2024]</strong> 🎉 Our team secured the <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/HFGjGQeefuvl73VYk58ecA">second place</a> in the <a target="_blank" rel="noopener" href="https://ccf.org.cn/CCDM2024/general_3042">Red Teaming Multimodal Large Language Model Security Challenge</a> hosted by CCF!</p>
+<p><strong>[Jul, 2024]</strong> 🎉 I have graduated from <a target="_blank" rel="noopener" href="https://en.jlu.edu.cn/">JLU</a>!</p>
+<h2 id="Research-Interest"><a href="#Research-Interest" class="headerlink" title="Research Interest"></a>Research Interest</h2><ul>
+<li>Large Language Models</li>
+<li>Trustworthy Machine Learning</li>
+<li>Speech &amp; Spoken Dialogue Systems</li>
+</ul>
+</div>
+
+            
+              
+          
+              
+      </article>
+
+      <div class="subtitle">Research Experience</div>
+
+      <!------------------------------------------- Chroma 1.0 -------------------------------------- -->
+      <div class="paper-box">
+        <div class="paper-box-image">
+          <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.11141">
+            <img class="hover:scale-[1.04] transition-transform" src="/images/chroma.png" alt="Chroma 1.0" width="100%"
+              onerror="this.closest('.paper-box-image').style.display='none'">
+          </a>
+        </div>
+
+        <div class="paper-box-text">
+          <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.11141"><strong>Chroma 1.0: Real-Time End-to-End Spoken Dialogue Model with Voice Cloning</strong></a>
+            <br>
+            <span style="display: block; height: 0.5em;"></span>
+            The first open-source, real-time end-to-end spoken dialogue model that unifies low-latency streaming with high-fidelity voice cloning. Built on a streaming multimodal LLM (Qwen2.5-Omni reasoning + a LLaMA backbone), it reaches 2.3&times; real-time inference (RTF = 0.43, TTFT = 146.87&nbsp;ms) and state-of-the-art voice cloning (SIM = 0.817), ranking top-2 on URO-Bench.
+            <br>
+            <span style="display: block; height: 0.5em;"></span>
+            📃<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.11141"><strong>Paper</strong> &nbsp; </a> 💾<a target="_blank" rel="noopener" href="https://github.com/FlashLabs-AI-Corp/FlashLabs-Chroma"><strong>Code</strong> &nbsp; </a> 🤗<a target="_blank" rel="noopener" href="https://huggingface.co/FlashLabs/Chroma-4B"><strong>Models</strong></a></p>
+        </div>
+      </div>
+
+      <div class="subtitle">Project Experience</div>
+
+      <!------------------------------------------- paper 1 -------------------------------------- -->
+      <div class="paper-box">
+        <div class="paper-box-image">
+          <a href="/2024/09/11/22_EAD/">
+            <img class=" hover:scale-[1.04] transition-transform" src="/images/ead0.png" alt="sym" width="100%">
+          </a>
+        </div>
+
+        <div class="paper-box-text">
+          <p><a href="/2024/09/11/22_EAD/"><strong>Active Perception Defense Against Adversarial Patches in 3D Environments</strong></a>
+            <br>
+            <span style="display: block; height: 0.5em;"></span>
+            By leveraging active perception and a feedback loop mechanism, model effectively counters adversarial patches in 3D environments, significantly enhancing model robustness.
+            <br>
+            <span style="display: block; height: 0.5em;"></span>
+            💾<a target="_blank" rel="noopener" href="https://github.com/terrencechentr/EAD-YOLOv5"><strong>Code</strong> &nbsp; </a> 📃<a href="/2024/09/11/22_EAD/"><strong>Page</strong></a></p>
+        </div>
+      </div>
+
+      <!------------------------------------------- paper 2 -------------------------------------- -->
+      <div class="paper-box">
+        <div class="paper-box-image">
+          <a href="/2024/09/11/21_jailbreak_attack/">
+            <img class=" hover:scale-[1.04] transition-transform" src="/images/frame_work.png" alt="sym" width="100%">
+          </a>
+
+        </div>
+        <div class="paper-box-text">
+          <p><a href="/2024/09/11/21_jailbreak_attack/"><strong>Jailbreak attack on VLMs Initiated from the Visual Modality</strong></a>
+            <br>
+            <span style="display: block; height: 0.5em;"></span>
+            By optimizing image processing and text generation strategies, the success rate and diversity of adversarial attacks were significantly enhanced.
+            <br>
+            <span style="display: block; height: 0.5em;"></span>
+             </a> 📃<a href="/2024/09/11/21_jailbreak_attack/"><strong>Page</strong></a></p>
+        </div>
+      </div>
+
+      <!------------------------------------------- paper 3 -------------------------------------- -->
+      <div class="paper-box">
+        <div class="paper-box-image">
+          <a href="/2024/09/11/20_SNL/">
+            <img class=" hover:scale-[1.04] transition-transform" src="/images/snl.png" alt="sym" width="100%">
+          </a>
+        </div>
+        <div class="paper-box-text">
+          <p><a href="/2024/09/11/20_SNL/"><strong>Automated C++ Code Generator for Syntax Analysis</strong></a><br>
+            <span style="display: block; height: 0.5em;"></span>
+            A tool that automatically generates C++ syntax analysis programs through Python scripts,
+            enhancing the efficiency and adaptability of compiler development.<br>
+            <span style="display: block; height: 0.5em;"></span>
+            💾<a target="_blank" rel="noopener" href="https://github.com/terrencechentr/SNL-compiler"><strong>Code</strong> &nbsp; </a> 📃<a href="/2024/09/11/20_SNL/"><strong>Page</strong></a></p>
+        </div>
+      </div>
+      <!------------------------------------------- paper 4 -------------------------------------- -->
+      <div class="paper-box">
+        <div class="paper-box-image">
+          <a href="/2024/09/11/19_Hex-game/">
+            <img class=" hover:scale-[1.04] transition-transform" src="/images/Hex_six.png" alt="sym" width="100%">
+          </a>
+        </div>
+        <div class="paper-box-text">
+          <p><a href="/2024/09/11/19_Hex-game/"><strong>Hex Game Algorithm Based on Queenbee's Evaluation</strong></a><br>
+            <span style="display: block; height: 0.5em;"></span>
+            A novel Hex game algorithm using Queenbee's evaluation function and advanced search techniques like Minimax and Alpha-Beta pruning enhances decision-making, delivering exceptional performance across various board sizes.<br>
+            <span style="display: block; height: 0.5em;"></span>
+            💾<a target="_blank" rel="noopener" href="https://github.com/terrencechentr/HexQueen"><strong>Code</strong> &nbsp; </a> 📃<a href="/2024/09/11/19_Hex-game/"><strong>Page</strong></a></p>
+        </div>
+      </div>
+
+      <!------------------------------------------- Honors and Awards -------------------------------------- -->
+      <div class="subtitle">Honors and Awards</div>
+      <article class="prose dark:prose-invert max-w-3xl text-left justify-star">
+        <ul>
+          <li>Outstanding Undergraduate Graduate 2024</li>
+          <li>Academic Scholarship 2021, 2022, 2023</li>
+          <li>Outstanding Student Leader 2021, 2022, 2023</li>
+          <li>Cultural and Sports Activities Scholarship 2022, 2024</li>
+          <li>Social Work Scholarship 2023</li>
+          <li>Top 8.38% of CCF Certified Software Professional in C++ in China 2021</li>
+          <li>Provincial Second Prize in the National College Students' Mathematical Modeling Competition</li>
+        </ul>
+      </article>
+
+
+
+
+    </div>
+
+    
+  </div>
+  </main>
+  <footer class="flex flex-col mt-12 mb-12 items-center
+  text-[var(--c-50)] text-sm">
+  Copyright © 2021-2026 Tairan Chen
+
+</footer>
+
+  <div class="
+    back-to-top
+    fixed right-6
+    z-[1024]
+    -bottom-20
+    rounded-lg
+    font-bold
+    py-1 px-2
+    text-[var(--c-80)]
+    bg-[var(--c-20)]
+    cursor-pointer
+    text-center
+    drop-shadow-md
+  ">
+    <span class="flex justify-center items-center text-sm">
+      <span id="scrollpercent"><span>0</span> %</span>
+      <iconify-icon width="18" icon="mingcute:arrow-to-up-fill" id="go-top"></iconify-icon>
+    </span>
+  </div>
+  
+<script src="/js/main.js"></script>
+
+
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
+</body>
+
+</html>

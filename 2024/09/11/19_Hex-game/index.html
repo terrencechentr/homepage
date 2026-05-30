@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- The tag on navigation bar -->
+<meta charset="UTF-8">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WCPDQJQ8YG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WCPDQJQ8YG');
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="Terrence Chen">
+
+
+  <meta name="subtitle" content="陈泰然">
+
+
+
+  <meta name="keywords" content="IT music movie life">
+
+
+<title>Hex Game Algorithm Based on Queenbee&#39;s Evaluation | Tairan Chen(陈泰然) | Home</title>
+
+
+
+<link rel="icon" href="/favicon.ico?v=4">
+
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+<script src="/lib/jquery.min.js"></script>
+
+
+<script src="/lib/iconify-icon.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/tailwind.css">
+
+<script>
+  (function () {
+    const prefersDark = false;  // 默认白色
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+    let isDark = document.documentElement.classList.contains("dark");
+  })();
+
+  $(document).ready(function () {
+    // init icon
+    const prefersDark = false;   // 默认白色
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = document.documentElement.classList.contains("dark");
+    $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+
+    function toggleGiscusTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const giscusFrame = document.querySelector("iframe.giscus-frame");
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: isDark ? "dark" : "light",
+              },
+            },
+          },
+          "https://giscus.app"
+        );
+      }
+    }
+
+
+    // toggle dark mode
+    function toggleDark() {
+      let isDark = document.documentElement.classList.contains("dark");
+      const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
+      document.documentElement.classList.toggle("dark", isDark);
+      $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+      if (prefersDark === isDark) {
+        localStorage.setItem("hexo-color-scheme", "auto");
+      } else {
+        localStorage.setItem("hexo-color-scheme", isDark ? "dark" : "light");
+      }
+      toggleGiscusTheme();
+    }
+    $("#toggle-dark").click(toggleDark);
+
+    // listen dark mode change
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+        if (setting === "auto") {
+          document.documentElement.classList.toggle("dark", e.matches);
+          $("#theme-icon").attr(
+            "icon",
+            e.matches ? "ic:round-dark-mode" : "ic:round-light-mode"
+          );
+          toggleGiscusTheme();
+        }
+      });
+  });
+</script>
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+<body 
+  class="
+    bg-[var(--c-0)]
+    text-[var(--c-80)]
+  ">
+  <!-- The navigation bar -->
+<header class="
+    top-0
+    bg-white
+    flex flex-row items-center
+    w-full
+    pr-4
+    z-10
+    border-b-[1px]
+    border-b-[var(--c-border)]
+    dark:bg-[var(--c-0)]
+    dark:border-b-[var(--c-0)]
+    gap-2
+    h-[var(--h-header)]
+    text-[var(--c-80)]
+">
+    <!-- Left part -->
+    <div class="overflow-hidden h-full flex flex-row items-center">
+        <!-- Site Title on the top left -->
+        <a href="/" class="
+            whitespace-nowrap
+            text-2xl
+            text-[var(--c-theme)]
+            hover:text-[var(--c-theme)]
+            pl-4
+            font-black
+            bg-gradient-to-r from-cyan-500
+            to-blue-500 bg-clip-text text-transparent
+          ">
+            Terrence
+        </a>
+    </div>
+    <!-- Div for pushing items to both sides -->
+    <div class="flex-1"></div>
+    <!-- Right part -->
+    <div class="flex flex-row items-center z-20 h-full">
+        <!-- Page links -->
+        <div class="hidden sm:flex flex-row h-full">
+            
+                
+                
+                    
+                    
+                
+                <a
+                    href="/"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:mortarboard-line" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>About Me</p>
+                    
+                </a>
+            
+                
+                
+                    
+                    
+                
+                <a
+                    href="/archives"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:pencil-fill" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>Posts</p>
+                    
+                </a>
+            
+                
+                
+                    
+                    
+                
+                <a
+                    href="/category"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:classify-3-fill" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>Categories</p>
+                    
+                </a>
+            
+        </div>
+        <!-- Icons on the right -->
+        <div class="flex flex-row items-center">
+
+            
+
+
+            <!-- Dark/light toggle icon -->
+            <a class="flex group p-1" title="toggle theme" id="toggle-dark">
+                <iconify-icon class="transition-transform
+                    group-hover:rotate-[45deg]
+                    group-hover:scale-125
+                    group-hover:text-[var(--c-theme)]
+                    " width="24" icon="" id="theme-icon">
+                </iconify-icon>
+            </a>
+            <!-- Icon for dropout menu on small screens -->
+            <div class="flex items-center justify-center gap-1 mx-1 sm:hidden">
+                <a class="w-5 h-5" aria-hidden="true" role="img" id="open-menu">
+                    <iconify-icon width="22" icon="mingcute:menu-fill"
+                        class="transition-transform hover:scale-125 hover:rotate-[5deg]">
+                    </iconify-icon>
+                </a>
+                <a class="w-5 h-5 hidden" aria-hidden="true" role="img" id="close-menu">
+                    <iconify-icon width="22" icon="mingcute:close-circle-fill"
+                        class="transition-transform hover:scale-125 hover:rotate-[80deg]">
+                    </iconify-icon>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Dropdown menu on small screens -->
+<div id="menu-panel"
+    class="
+        h-0
+        overflow-hidden
+        sm:hidden
+        w-full
+        z-10
+        rounded
+    ">
+  <div id="menu-content"
+        class="
+        font-bold
+        text-xl
+        border-b-[1px]
+        relative
+        z-20
+        border-[var(--c-sep)]
+        px-2
+        py-2
+        -translate-y-full
+        transition-transform
+        duration-200
+        ">
+      
+        
+        
+          <a
+            href="/"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:mortarboard-line" width="22">
+            </iconify-icon>
+            <p>
+              About Me
+            </p>
+          </a>
+        
+      
+        
+        
+          <a
+            href="/archives"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:pencil-fill" width="22">
+            </iconify-icon>
+            <p>
+              Posts
+            </p>
+          </a>
+        
+      
+        
+        
+          <a
+            href="/category"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:classify-3-fill" width="22">
+            </iconify-icon>
+            <p>
+              Categories
+            </p>
+          </a>
+        
+      
+  </div>
+</div>
+  <main>
+    <!-- css -->
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
+  
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+    <!-- toc -->
+    
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden xl:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-4xl mx-auto md:px-0">
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">Hex Game Algorithm Based on Queenbee's Evaluation</p>
+      </div>
+      <!-- Meta data -->
+      <div>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              <time class="w-max">2024-09-12</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+
+            <!-- Word count -->
+            <span class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>1.9k words, 11 min</span>
+            </span>
+            <!-- Categories -->
+            
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/categories/Research/">Research</a>
+              </span>
+            
+          </div>
+        </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
+<div class="flex flex-wrap gap-1">
+  
+</div>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto dark:prose-invert">
+    <p><img src="/images/Hex_six.png" alt="Figure 1: Hex game board"></p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Hex is a classic strategy board game, first invented by Danish mathematician Piet Hein in 1942 and independently rediscovered by John Nash at Princeton University in 1948. The game is played on a diamond-shaped hexagonal grid, typically 11x11 or larger. Hex’s rules are simple and straightforward, yet its strategy is profoundly complex, making it an ideal platform for research in artificial intelligence and game theory.In this paper, for ease of discussion and demonstration, we utilize a 5x5 board and employ the board coordinates as shown in Figure 2.</p>
+<p><img src="/images/hex1.png" alt="Figure 2: Cell coordinates"></p>
+<p>The game involves two players, each using black and white pieces. Players take turns placing their pieces on empty cells, aiming to connect their respective colored edges with an unbroken chain of pieces. A notable feature of Hex is that the game cannot end in a draw, ensuring that one player will inevitably win each match.</p>
+<p>The complexity of Hex lies not only in its deep strategy under simple rules but also in its close ties to graph theory. In fact, Hex is a special case of the Shannon switching game, which has been proven to be PSPACE-complete. This indicates that decision-making in Hex is computationally challenging, especially as the board size increases.</p>
+<p>In this paper, we propose a novel algorithm designed to enhance decision-making capabilities in Hex for computer players. By integrating advanced search techniques and evaluation strategies, our algorithm demonstrates exceptional performance across various board sizes, showcasing its potential application in Hex gameplay.</p>
+<h2 id="Queenbee’s-Evaluation-Function"><a href="#Queenbee’s-Evaluation-Function" class="headerlink" title="Queenbee’s Evaluation Function"></a>Queenbee’s Evaluation Function</h2><p>A game program requires a good evaluation function to guide its search. However, for the game of Hex, constructing a meaningful evaluation function is not immediately obvious. For example, unlike many other board games, the concepts of material balance and mobility are completely useless in Hex. This chapter contains some new ideas about the evaluation function for Hex, which have been implemented in the Hex program Queenbee. The function calculates the distance from all unoccupied cells on the board to each edge based on an unconventional distance metric called “two-distance.” The resulting distances are referred to as “potential.”</p>
+<h3 id="Two-Distance"><a href="#Two-Distance" class="headerlink" title="Two-Distance"></a>Two-Distance</h3><p>Given a graph $ \Gamma $ with an adjacency function $ n(p) $ that maps a vertex $ p $ to the set of vertices adjacent to it, there is a distance metric $ d_z $ to generalize the traditional distance metric:</p>
+<script type="math/tex; mode=display">
+
+d_z(p, q) = \begin{cases}
+0 & \text{if } q = p, \\
+1 & \text{if } q \in n(p), \\
+\min_k c_k(p) \geq z & \text{otherwise},
+\end{cases}</script><p>where</p>
+<script type="math/tex; mode=display">
+c_k(p) = \{ r \in n(p) | d_z(r, q) < k \}.</script><p>The traditional distance metric corresponds to $ z = 1 $, in which case the distance from a cell to an edge represents the number of “free moves” a player needs to connect the cell to a given edge. Unfortunately, this distance function is not very useful for constructing an evaluation function for Hex. Instead, the concept of two-distance is used.</p>
+<p>The image below shows the distance from each cell on a 5x5 board to the lower black edge, according to these two metrics. The intuition behind two-distance is that in the game, one can always choose to force the opponent to choose a suboptimal option by blocking the best choice. Consider e4, the cell with boxed numbers in the image. The traditional distance indicates that it takes only four steps directly to the lower black edge. However, only one path from e4 achieves this distance. In contrast, the two-distance equals because the best two adjacent connections have distances of 5 and 6. Two-distance thus captures the essence of “<strong>suboptimal choices</strong>.”</p>
+<p><img src="/images/hex2.png" alt="Figure 3: Cornparison between conventional distance and two-distance to the lower black edge"></p>
+<p>Note that the two-distance for the rightmost cell e5 on the board is 7, even though its directly adjacent neighbor also has a two-distance of 7. This number is still correct because calculating two-distance requires considering the entire neighborhood. Adjacency implies neighborhood, but not vice versa. Two cells are adjacent if they share a common edge. The concept of neighborhood considers the black and white stones already present on the board. Two unoccupied cells are neighbors from the perspective of white stones if they are adjacent or connected by a string of white stones.</p>
+<p>Note that a cell’s neighborhood can differ from the perspective of white stones. These two neighborhoods will be referred to as W-neighborhood and B-neighborhood, respectively. Accordingly, W-distance and B-distance will be distinguished. This explains why the two-distance from cell e5 to the lower black edge is 7; due to edge stones, its B-neighborhood includes cells a5 and b5, with distances of 5 and 6, respectively.</p>
+<p>In Figure 5.2, two black stones have been added. Figure 5.2-I shows the B-distance from unoccupied cells to the lower black edge, and Figure 5.2-II shows the W-distance to the upper white edge. Adding these two black stones causes, for example, cells c2 and b5 to become B-neighbors but not W-neighbors.</p>
+<p><img src="/images/hex3.png" alt="Figure 4: Two-distances on a non-empty board"></p>
+<h3 id="Potentials"><a href="#Potentials" class="headerlink" title="Potentials"></a>Potentials</h3><p>The goal in Hex is to connect two sides of the board. To help achieve this, one might look for an unoccupied cell that is as close as possible to being connected to both sides, as this would be a promising candidate for being part of a winning chain. The evaluation function calculates <strong>potentials</strong> that capture this concept. Each unoccupied cell is assigned two potentials, based on the two-distance metric. A cell’s W-potential is defined as the sum of its W-distance to both white edges; its B-potential is the sum of its B-distance to both black edges. Figure 5 shows the potentials for a position with two white and two black stones on the board.</p>
+<p>Cells with low W-potentials are the ones that are closest to being connected to both white borders by White. If White can connect a cell to both white borders, this would establish a winning chain. White will therefore focus on those cells that have the lowest W-potentials. The white <strong>board potential</strong> is defined as the lowest W-potential that occurs on the board. In the example of Figure 5, the white board potential is 5, and the black board potential is 4. As lower potentials are better, it appears that Black is ahead.</p>
+<p>In the same figure, it can be seen that both Black and White have only one cell that actually realizes their board potential. For both players, it is the cell c2. It would be better to have more than one cell that realizes the board potential, so as to have more attack options and be less easy to block. The <strong>attack mobility</strong> is defined for each player as the number of cells that realize that player’s board potential.</p>
+<p><img src="/images/hex4.png" alt="Figure 5: Cell Potentials"></p>
+<p>Queenbee’s evaluation function uses only the two concepts of board potential and attack mobility. The evaluation function returns the following number:</p>
+<script type="math/tex; mode=display">
+ e = M(p_B - p_W) - (a_B - a_W)</script><p>where:</p>
+<ul>
+<li>$ p_W $ = white board potential;</li>
+<li>$ p_B $ = black board potential;</li>
+<li>$ a_W $ = white attack mobility;</li>
+<li>$ a_B $ = black attack mobility;</li>
+<li>$ M $ = a large number.</li>
+</ul>
+<p>If $ M $ is set to be sufficiently large, the evaluation function will prefer one position over another if its board potential difference is better, and only use the attack mobility difference as a tie-breaker for positions with equal board potential difference. The potential of a cell, if it is finite, cannot be larger than $ 2n^2 $ on an $ n \times n $ board. Therefore, using a value for $ M $ of the order of magnitude of $ n^2 $ will achieve this. In our work, we use $ M = 100 $.</p>
+<h2 id="Game-Tree"><a href="#Game-Tree" class="headerlink" title="Game Tree"></a>Game Tree</h2><p>In the game of Hex, while Queenbee’s evaluation functions provide immediate value judgments for specific situations, they are limited to static analysis of the current state. To make more comprehensive and strategic decisions, the use of game trees is essential. Game trees allow us to simulate sequences of possible future moves, thereby predicting the opponent’s responses and potential game progress. By combining game trees with evaluation functions, players can identify the best moves by exploring the tree, comparing the outcomes of different strategies, and choosing those that maximize their chances of winning.</p>
+<p>A game tree is a structure used to simulate possible future sequences of moves in a game. By constructing a game tree, players can anticipate the opponent’s responses and the potential progression of the game. Each node represents a game state, while the edges represent possible moves from one state to another.</p>
+<h3 id="Minimax-Algorithm"><a href="#Minimax-Algorithm" class="headerlink" title="Minimax Algorithm"></a>Minimax Algorithm</h3><p>The Minimax algorithm is a classic decision-making algorithm, particularly suited for zero-sum games. Its basic idea is to maximize the player’s minimum gain, assuming the opponent will make the most detrimental choices for the player. The pseudocode is as follows:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function minimax(node, depth, maximizingPlayer):</span><br><span class="line">    if depth = 0 or node is a terminal node:</span><br><span class="line">        return the heuristic value of the node</span><br><span class="line">    if maximizingPlayer:</span><br><span class="line">        bestValue = -infinity</span><br><span class="line">        for each child node of node:</span><br><span class="line">            v = minimax(child, depth - 1, FALSE)</span><br><span class="line">            bestValue = max(bestValue, v)</span><br><span class="line">        return bestValue</span><br><span class="line">    else:</span><br><span class="line">        bestValue = +infinity</span><br><span class="line">        for each child node of node:</span><br><span class="line">            v = minimax(child, depth - 1, TRUE)</span><br><span class="line">            bestValue = min(bestValue, v)</span><br><span class="line">        return bestValue</span><br></pre></td></tr></table></figure>
+<h3 id="Alpha-Beta-Pruning"><a href="#Alpha-Beta-Pruning" class="headerlink" title="Alpha-Beta Pruning"></a>Alpha-Beta Pruning</h3><p>Alpha-Beta pruning is an optimization technique for the Minimax algorithm, aimed at reducing the number of nodes that need to be evaluated, thereby improving efficiency. The basic principle is to prune unnecessary branches, avoiding the evaluation of moves that are clearly disadvantageous. The specific steps are as follows:</p>
+<ul>
+<li><strong>Alpha value:</strong> Represents the minimum score that the current player is assured of.</li>
+<li><strong>Beta value:</strong> Represents the minimum score that the opponent is assured of.</li>
+<li><strong>Pruning condition:</strong> If at any node, the Beta value is less than or equal to the Alpha value, further evaluation of that node can be stopped, as the opponent will not choose that path.</li>
+</ul>
+<p>Through Alpha-Beta pruning, the algorithm can skip a large number of unnecessary calculations without affecting the final decision, significantly improving efficiency. This is particularly important for complex games like Hex, where the number of possible states grows exponentially with the board size. The pseudocode is as follows:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function alphabeta(node, depth, α, β, Player)         </span><br><span class="line">    if depth = 0 or node is a terminal node  </span><br><span class="line">        return the heuristic value of node  </span><br><span class="line">    if Player = MaxPlayer  </span><br><span class="line">        for each child of node  </span><br><span class="line">            α := max(α, alphabeta(child, depth-1, α, β, not(Player)))  </span><br><span class="line">            if β ≤ α  </span><br><span class="line">                break  </span><br><span class="line">        return α  </span><br><span class="line">    else  </span><br><span class="line">        for each child of node  </span><br><span class="line">            β := min(β, alphabeta(child, depth-1, α, β, not(Player)))  </span><br><span class="line">            if β ≤ α  </span><br><span class="line">                break  </span><br><span class="line">        return β</span><br></pre></td></tr></table></figure>
+<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><p>To evaluate the performance of our algorithm, we conducted experiments on the <a target="_blank" rel="noopener" href="https://botzone.org.cn/game/Hex">Botzone</a> platform. Due to time constraints, we did not perform an exhaustive search for optimal hyperparameters. Instead, we used heuristic methods to select parameters suitable for an 11x11 board. Following the initial setup, we uploaded our Bot to the competition platform under the ID <code>6266ba6e351b6f7f90682672</code>, where users can search for this ID to engage in matches.</p>
+<h2 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h2><p>After achieving promising initial results, we plan to further optimize the algorithm to enhance its performance on larger board sizes. Our future work includes:</p>
+<ul>
+<li><p><strong>Hyperparameter Optimization</strong>: A more systematic approach to adjusting hyperparameters, aiming to discover potentially superior configurations.</p>
+</li>
+<li><p><strong>Incorporating Machine Learning</strong>: Exploring the integration of machine learning techniques to allow the algorithm to autonomously learn optimal strategies and improve decision-making.</p>
+</li>
+</ul>
+
+  </article>
+
+  <!-- prev and next -->
+  <!-- <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
+    <div>
+      
+    </div>
+    <div>
+      
+        <a href="/2024/09/11/20_SNL/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
+          Automated C++ Code Generator for Syntax Analysis
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div> -->
+
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+<script
+  src="https://giscus.app/client.js"
+  data-repo=""
+  data-repo-id=""
+  data-category=""
+  data-category-id=""
+  data-mapping=""
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  crossorigin="anonymous"
+  async
+></script>
+<script>
+  window.onload = function () {
+    console.log("giscus loaded");
+    const isDark = document.documentElement.classList.contains("dark");
+    const giscusFrame = document.querySelector("iframe.giscus-frame");
+    giscusFrame.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: isDark ? "dark" : "light",
+          },
+        },
+      },
+      "https://giscus.app"
+    );
+  };
+</script>
+
+
+  </div>
+</section>
+<!-- js inspect -->
+
+<script src="/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        var title = this.title;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        if (title) $(this).after('<span class="fancybox-title">' + title + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
+
+  </main>
+  <footer class="flex flex-col mt-12 mb-12 items-center
+  text-[var(--c-50)] text-sm">
+  Copyright © 2021-2026 Tairan Chen
+
+</footer>
+
+  <div class="
+    back-to-top
+    fixed right-6
+    z-[1024]
+    -bottom-20
+    rounded-lg
+    font-bold
+    py-1 px-2
+    text-[var(--c-80)]
+    bg-[var(--c-20)]
+    cursor-pointer
+    text-center
+    drop-shadow-md
+  ">
+    <span class="flex justify-center items-center text-sm">
+      <span id="scrollpercent"><span>0</span> %</span>
+      <iconify-icon width="18" icon="mingcute:arrow-to-up-fill" id="go-top"></iconify-icon>
+    </span>
+  </div>
+  
+<script src="/js/main.js"></script>
+
+
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
+</body>
+
+</html>
